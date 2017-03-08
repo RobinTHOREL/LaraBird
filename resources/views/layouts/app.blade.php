@@ -47,7 +47,6 @@
                         <li><a href="">Notifications()</a></li>
                         <li><a href="">Messagerie()</a></li>
                         <li><a href="">Recherche</a></li>
-                        <li><a href="">Profil</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -63,6 +62,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="">Profil</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
