@@ -1,12 +1,12 @@
 @extends('layout')
 
 @section('title')
-    {{$page_name}}
+    {{$profil_id}}
 @endsection
 
 @section('content')
     <div class="title m-b-md">
-        Page {{$page_name}}
+        Page {{$profil_id}}
     </div>
 
     <div class="links">

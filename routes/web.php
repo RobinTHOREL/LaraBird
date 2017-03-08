@@ -15,18 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello', function () {
+/*Route::get('hello', function () {
     return "Hello World !";
-});
+});*/
 
+/*
 // ? = parametre optionnel. Si homestead.app/page == page/Home (default)
-Route::get('page/{page_name?}', function ($page_name = 'Home') {
+Route::get('profil/{page_name?}', function ($page_name = 'Home') {
     return "Page ".$page_name;
 });
+*/
 
 // Envoyer la variable $page_name dans la view 'mainpage'
-Route::get('mainpage/{page_name?}', function ($page_name = 'Home') {
-    return view('mainpage', ['page_name' => $page_name]);
+Route::get('profil/{profil_id?}', function ($profil_id = '') {
+    return view('profil', ['profil_id' => $profil_id]);
 });
 
 //Taper dans dans WallController@read
