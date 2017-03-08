@@ -8,9 +8,9 @@ use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
-    public function profile($request){
+    public function profile($request = null){
 
-        if (empty($request))
+        if ($request === null)
             $user_id = Auth::id();
         else
             $user_id = $request;
