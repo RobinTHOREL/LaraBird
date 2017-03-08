@@ -27,9 +27,7 @@ Route::get('profil/{page_name?}', function ($page_name = 'Home') {
 */
 
 // Envoyer la variable $page_name dans la view 'mainpage'
-Route::get('profil/{profil_id?}', function ($profil_id = '') {
-    return view('profil', ['profil_id' => $profil_id]);
-});
+
 
 //Taper dans dans WallController@read
 Route::get('read/{search?}','WallController@read');
@@ -39,3 +37,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/write', 'HomeController@write');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+//Page profil
+Route::get('profil/{id_user?}', 'UserController@profile');
+
+// Recupérer l'update de l'avatar sur la page profil
+Route::post('profil', 'UserController@update_avatar');

@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -26,28 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //SELECT *
-        //$posts = Post::all();
-
-        //ORDER BY
-        $posts = Post::orderBy('created_at','desc')->get();
-        return view('home', ['posts' => $posts]);
-    }
-
-    /**
-     * Write a post to database
-     * Récupère la valeur du post et insert
-     * @return \Illuminate\Http\Response
-     */
-    public function write(Request $request)
-    {
-        $post = new Post();
-        $post->post_content = $request->post_content;
-        $post->author = Auth::id();
-        $post->save();
-
-        Session::flash('alert-success', 'Butter successfully added');
-
-        return redirect('home');
+        return view('home');
     }
 }
