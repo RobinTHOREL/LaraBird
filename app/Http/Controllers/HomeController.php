@@ -42,10 +42,11 @@ class HomeController extends Controller
     public function write(Request $request)
     {
         $post = new Post;
-        $post->followed_id = $request->user_id;
-        $post->follower_id = Auth::id();
+        $post->post_content = $request->post_content;
+        $post->author = Auth::id();
         $post->save();
+        Session::flash('alert-success', 'Post successfully added');
 
-        return redirect('profil');
+        return redirect('home');
     }
 }

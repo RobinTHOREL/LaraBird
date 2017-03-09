@@ -53,3 +53,6 @@ Route::post('post_from_profil', 'UserController@write');
 
 //Permet de follow une personne
 Route::post('add_follower', 'UserController@add_follower');
+
+//Permet de unfollow une personne
+Route::post('del_follower', 'UserController@del_follower');

@@ -14,6 +14,7 @@ class CreateFollowTable extends Migration
     public function up()
     {
         Schema::create('follow', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('follower_id');
             $table->unsignedInteger('followed_id');
             $table->timestamps();

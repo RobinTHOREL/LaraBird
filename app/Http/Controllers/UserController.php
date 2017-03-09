@@ -86,4 +86,17 @@ class UserController extends Controller
 
         return redirect('profil/'.$request->user_id);
     }
+
+    //how to unfollow
+    public function del_follower(Request $request){
+
+        $follow = Follow::where([
+            ['follower_id', '=', Auth::id()],
+            ['followed_id', '=', $request->user_id],
+        ])->first();
+
+        $follow->delete();
+
+        return redirect('profil/'.$request->user_id);
+    }
 }
