@@ -33,22 +33,21 @@ class HomeController extends Controller
 
         $isFollowed = false;
 
+        $followed_user = Follow::where('follower_id', Auth::id())->get();
+        $followed_ids = [Auth::id()];
 
-        $follow = Follow::where('follower_id', Auth::id())->get();
-        $followed_ids = [];
+        foreach($followed_user as $followed){
 
-        foreach($follow as $followed){
-            if($followed->followed_id == Auth::id())
-                $isFollowed = true;
-            else
-                $isFollowed = false;
+            $followed_ids[] = $followed->followed_id;
+
         }
 
         //ORDER BY
-        $posts = Post::orderBy('created_at','desc')->get();
+        $posts = Post::whereIn('author', $followed_ids)->orderBy('created_at','desc')->get();
+
         $user = User::all();
 
-        return view('home', ['posts' => $posts, 'users' => $user, 'isFollowed' => $isFollowed]);
+        return view('home', ['posts' => $posts, 'users' => $user, 'followeds' => $followed_ids]);
     }
 
     /**

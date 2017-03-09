@@ -91,12 +91,21 @@
                 @foreach($users as $user)
                     @if(Auth::id() != $user->id)
                         <img src="/uploads/avatars/{{ $user->avatar }}" class="avatar_post">
-                        <a href=""><span>@</span> {!! $user->name !!}</a>
-                            @if($isFollowed == false)
-                                <button type="submit" class="btn btn-primary"><span><i class="fa fa-star"></i></span> Follow {{ $user->name  }}</button>
+                        <a href="/profil/{{ $user->id }}"><span>@</span> {!! $user->name !!}</a>
+                            @if(!in_array($user->id, $followeds))
+                                <form action="/add_follower" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-primary"><span><i class="fa fa-star"></i></span> Follow {{ $user->name }}</button>
+                                </form>
                             @else
-                                <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span> Follow</button>
+                                <form action="/del_follower" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span> Follow</button>
+                                </form>
                             @endif
+
                             <hr>
                     @endif
                 @endforeach
