@@ -29,6 +29,6 @@ class CreateLikeTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('like');
     }
 }
