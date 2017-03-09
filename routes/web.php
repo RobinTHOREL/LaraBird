@@ -62,3 +62,13 @@ Route::post('add_follower_from_home', 'HomeController@add_follower_from_home');
 
 //Permet d'unfollow depuis la home
 Route::post('del_follower_from_home', 'HomeController@del_follower_from_home');
+
+//Supprimer un post
+Route::get('delete/{id_post}', 'HomeController@delete_post');
+
+//Update un post
+Route::get('modify/{id_post}', 'HomeController@modify_post');
+
+Route::get('/settings', 'UserController@settings');
+
+Route::post('/settings/update', 'UserController@update_settings');

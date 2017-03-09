@@ -116,8 +116,7 @@
                                     <ol class="storyActions">
                                         <li><a href="#"><i class="fa fa-heart"></i> Like</a></li>
                                         @if(Auth::id() == $post->user->id)
-                                            <li><a href="#"><i class="fa fa-modx"></i> Modify</a></li>
-                                            <li><a href="#"><i class="fa fa-trash"></i> Delete</a></li>
+                                            <li><a href="/delete/{{ $post->id }}"><i class="fa fa-trash"></i> Delete</a></li>
                                         @endif
                                         <li><a href="#"><i class="fa fa-comment"></i> Comment</a></li>
                                     </ol>

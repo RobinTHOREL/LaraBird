@@ -87,4 +87,16 @@ class HomeController extends Controller
 
         return redirect('home');
     }
+
+    public function delete_post(Request $request, $id){
+
+        $post = Post::where([
+            ['author','=',Auth::id()],
+            ['id','=',$id],
+        ])->first();
+
+        $post->delete();
+
+        return redirect()->back();
+    }
 }

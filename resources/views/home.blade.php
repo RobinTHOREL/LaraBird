@@ -70,8 +70,7 @@
                             <ol class="storyActions">
                                 <li><a class="likes" href="#"><i class="fa fa-heart"></i> Like</a></li>
                                 @if(Auth::id() == $post->user->id)
-                                    <li><a href="#"><i class="fa fa-modx"></i> Modify</a></li>
-                                    <li><a href="#"><i class="fa fa-trash"></i> Delete</a></li>
+                                    <li><a href="/delete/{{ $post->id }}"><i class="fa fa-trash"></i> Delete</a></li>
                                 @endif
                                     <li><a href="#"><i class="fa fa-comment"></i> Comment</a></li>
                             </ol>
@@ -100,7 +99,7 @@
                                     <button type="submit" class="btn btn-primary"><span><i class="fa fa-star"></i></span></button>
                                 </form>
                             @else
-                                <p><i>Already follow {{ $user->name }}</i></p>
+                                <p><i>You already follow {{ $user->name }}</i></p>
                             @endif
                             <hr>
                         </span>

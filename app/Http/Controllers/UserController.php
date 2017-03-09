@@ -102,4 +102,20 @@ class UserController extends Controller
 
         return redirect('profil/'.$request->user_id);
     }
+
+    public function settings(Request $request){
+
+        $user = User::findOrFail(Auth::id());
+
+        return view('settings', ['user' => $user]);
+    }
+
+    public function update_settings(Request $request){
+
+        User::where('id', Auth::id())
+            ->update(['password' => bcrypt($request->password)]);
+
+        return redirect()->back();
+
+    }
 }
