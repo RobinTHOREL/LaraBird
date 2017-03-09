@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -15,7 +17,9 @@ class UserController extends Controller
         else
             $user_id = $request;
 
-        return view('profil', ['user_id' => $user_id, 'user' => Auth::user()]);
+        $user = User::findOrFail($user_id);
+
+        return view('profil', ['user_id' => $user_id, 'user' => $user]);
     }
 
     public function update_avatar(Request $request){
