@@ -40,9 +40,12 @@ class UserController extends Controller
             $user = Auth::user();
             $user->avatar = $filename;
             $user->save();
+
+            //ORDER BY
+            $posts = Post::orderBy('created_at','desc')->where('author', Auth::id())->get();
         }
 
-        return view('profil', array('user' => Auth::user()) );
+        return view('profil', array('user' => Auth::user(), 'user_id' => Auth::id(), 'posts' => $posts) );
 
     }
 

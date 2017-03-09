@@ -55,7 +55,7 @@
                                     <div class="formUnit" id="Status">
                                         <i class="active"></i>
                                         <!-- Ouvre le fomulaire -->
-                                        {!! Form::open(['url' => 'write']) !!}
+                                        {!! Form::open(['url' => 'post_from_profil']) !!}
                                         {!! Form::textarea('post_content', null, ['placeholder' => 'Write only with butter', 'class' => 'sizetop']) !!}
 
                                         <ol class="controls clearfix">
