@@ -26,10 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-
         //SELECT *
-        //$posts = Post::all();
+        // $posts = Post::all();
 
         //ORDER BY
         $posts = Post::orderBy('created_at','desc')->get();
