@@ -47,3 +47,6 @@ Route::get('profil/{id_user?}', 'UserController@profile');
 
 // Recupérer l'update de l'avatar sur la page profil
 Route::post('profil', 'UserController@update_avatar');
+
+// Récupere un post sur la page profil
+Route::post('profil', 'UserController@write');

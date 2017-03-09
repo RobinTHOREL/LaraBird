@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
-use App\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\User;
 use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
+
     public function profile($request = null){
 
         if ($request === null)
@@ -19,7 +21,10 @@ class UserController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        return view('profil', ['user_id' => $user_id, 'user' => $user]);
+        //ORDER BY
+        $posts = Post::orderBy('created_at','desc')->where('author', $user_id)->get();
+
+        return view('profil', ['user_id' => $user_id, 'user' => $user, 'posts' => $posts]);
     }
 
     public function update_avatar(Request $request){
@@ -39,5 +44,21 @@ class UserController extends Controller
 
         return view('profil', array('user' => Auth::user()) );
 
+    }
+
+    /**
+     * Write a post to database
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function write(Request $request)
+    {
+        $post = new Post;
+        $post->post_content = $request->post_content;
+        $post->author = Auth::id();
+        $post->save();
+        Session::flash('alert-success', 'Post successfully added');
+
+        return redirect('profil');
     }
 }

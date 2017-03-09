@@ -23,27 +23,38 @@
                         </form>
 
                     @endif
-                    <div class="col-md-3 profil_stats">
-                        <h3>Posts</h3>
-                        <p>{{ $user_id }}</p>
-                    </div>
-                    <div class="col-md-3 profil_stats">
-                        <h3>Followers</h3>
-                        <p>{{ Auth::id() }}</p>
-                    </div>
-                    <div class="col-md-3 profil_stats">
-                        <h3>Followed</h3>
-                        <p>10</p>
-                    </div>
+                        <div class="col-md-9">
+                            <div class="col-md-4 profil_stats">
+                                <h3>Posts</h3>
+                                <p>{{ count($user->posts) }}</p>
+                            </div>
+                            <div class="col-md-4 profil_stats">
+                                <h3>Followers</h3>
+                                <p>{{ Auth::id() }}</p>
+                            </div>
+                            <div class="col-md-4 profil_stats">
+                                <h3>Followed</h3>
+                                <p>10</p>
+                            </div>
+                        </div>
                 </div>
                 @if(Auth::id() == $user_id)
                     <div class="panel-body">
-                        {!! Form::open(['url' => 'write']) !!}
+                        {!! Form::open(['url' => 'profil']) !!}
                         {!! Form::text('post_content') !!}
                         {!! Form::submit('Write on the wall') !!}
                         {!! Form::close() !!}
                     </div>
                 @endif
+                <div class="col-md-12">
+                    <br>
+                    @foreach($posts as $post)
+                        <div class="post">
+                            @<b>{!! $post->user->name !!}</b>, {!! $post->created_at->diffForHumans() !!} : <br>
+                            {!! $post->post_content !!} <hr>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
