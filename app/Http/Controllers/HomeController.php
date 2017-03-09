@@ -30,8 +30,9 @@ class HomeController extends Controller
     {
         //SELECT *
         // $posts = Post::all();
-
+        
         $isFollowed = false;
+
 
         $follow = Follow::where('follower_id', Auth::id())->get();
         $followed_ids = [];

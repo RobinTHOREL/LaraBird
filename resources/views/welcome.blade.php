@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to Butter
+                    Welcome to Lara(<strong>Butter</strong>)Bird
                 </div>
 
                 <div class="links">
