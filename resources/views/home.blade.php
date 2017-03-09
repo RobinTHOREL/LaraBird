@@ -87,8 +87,19 @@
         <div class="col-md-3">
             <div class="panel">
                 <div class="panel-body">
-                    All users : <br>
-
+                    All users : <hr>
+                @foreach($users as $user)
+                    @if($user != Auth::user()->name)
+                        <img src="/uploads/avatars/{{ $user->avatar }}" class="avatar_post">
+                        <a href=""><span>@</span> {!! $user->name !!}</a>
+                            @if($isFollowed == false)
+                                <button type="submit" class="btn btn-primary"><span><i class="fa fa-star"></i></span> Follow {{ $user->name  }}</button>
+                            @else
+                                <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span> Follow</button>
+                            @endif
+                    @endif
+                        <hr>
+                @endforeach
                 </div>
             </div>
         </div>
