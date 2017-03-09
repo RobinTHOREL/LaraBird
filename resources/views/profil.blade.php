@@ -61,7 +61,7 @@
                                     <div class="formUnit" id="Status">
                                         <i class="active"></i>
                                         <!-- Ouvre le fomulaire -->
-                                        {!! Form::open(['url' => 'write']) !!}
+                                        {!! Form::open(['url' => 'post_from_profil']) !!}
                                         {!! Form::textarea('post_content', null, ['placeholder' => 'Write only with butter', 'class' => 'sizetop']) !!}
 
                                         <ol class="controls clearfix">
@@ -101,8 +101,12 @@
 
                                     <!-- Units -->
                                     <ol class="storyActions">
-                                        <li><a href="#">Like</a></li>
-                                        <li><a href="#">Comment</a></li>
+                                        <li><a href="#"><i class="fa fa-heart"></i> Like</a></li>
+                                        @if(Auth::id() == $post->user->id)
+                                            <li><a href="#"><i class="fa fa-modx"></i> Modifier</a></li>
+                                            <li><a href="#"><i class="fa fa-trash"></i> Supprimer</a></li>
+                                        @endif
+                                        <li><a href="#"><i class="fa fa-comment"></i> Comment</a></li>
                                     </ol>
                                     <!-- / Units -->
 

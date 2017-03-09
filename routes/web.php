@@ -42,11 +42,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-//Page profil
+//Page profil. Recherche URI
 Route::get('profil/{id_user?}', 'UserController@profile');
 
 // Recupérer l'update de l'avatar sur la page profil
 Route::post('profil', 'UserController@update_avatar');
 
 // Récupere un post sur la page profil
-Route::post('profil', 'UserController@write');
+Route::post('post_from_profil', 'UserController@write');
