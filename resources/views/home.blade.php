@@ -89,7 +89,7 @@
                 <div class="panel-body">
                     All users : <hr>
                 @foreach($users as $user)
-                    @if($user != Auth::user()->name)
+                    @if(Auth::id() != $user->id)
                         <img src="/uploads/avatars/{{ $user->avatar }}" class="avatar_post">
                         <a href=""><span>@</span> {!! $user->name !!}</a>
                             @if($isFollowed == false)
@@ -97,8 +97,8 @@
                             @else
                                 <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span> Follow</button>
                             @endif
+                            <hr>
                     @endif
-                        <hr>
                 @endforeach
                 </div>
             </div>
