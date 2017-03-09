@@ -68,7 +68,7 @@
 
                             <!-- Units -->
                             <ol class="storyActions">
-                                <li><a href="#"><i class="fa fa-heart"></i> Like</a></li>
+                                <li><a class="likes" href="#"><i class="fa fa-heart"></i> Like</a></li>
                                 @if(Auth::id() == $post->user->id)
                                     <li><a href="#"><i class="fa fa-modx"></i> Modifier</a></li>
                                     <li><a href="#"><i class="fa fa-trash"></i> Supprimer</a></li>
@@ -87,8 +87,28 @@
         <div class="col-md-3">
             <div class="panel">
                 <div class="panel-body">
-                    All users : <br>
+                    All users : <hr>
+                @foreach($users as $user)
+                    @if(Auth::id() != $user->id)
+                        <img src="/uploads/avatars/{{ $user->avatar }}" class="avatar_post">
+                        <a href="/profil/{{ $user->id }}"><span>@</span> {!! $user->name !!}</a>
+                            @if(!in_array($user->id, $followeds))
+                                <form action="/add_follower" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-primary"><span><i class="fa fa-star"></i></span> Follow {{ $user->name }}</button>
+                                </form>
+                            @else
+                                <form action="/del_follower" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span> Follow</button>
+                                </form>
+                            @endif
 
+                            <hr>
+                    @endif
+                @endforeach
                 </div>
             </div>
         </div>

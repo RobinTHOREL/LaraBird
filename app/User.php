@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Post;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\App;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('User', 'follow', 'followed_id', 'follower_id')->withTimestamps();
     }
+
+    public function likes()
+    {
+        return $this->hasMany("app\Like");
+    }
+
+
 }
