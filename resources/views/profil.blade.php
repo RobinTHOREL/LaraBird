@@ -23,7 +23,7 @@
                         </form>
 
                     @endif
-                        <div class="col-md-9">
+                        <div class="col-md-12">
                             <div class="col-md-4 profil_stats">
                                 <h3>Posts</h3>
                                 <p>{{ count($user->posts) }}</p>
@@ -38,7 +38,13 @@
                             </div>
                         </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-2">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+
+                <div class="col-md-8">
 
                     <ol class="timeline">
                         @if(Auth::id() == $user_id)
@@ -105,6 +111,12 @@
                         @endforeach
                     </ol>
                 </div>
+                <div class="col-md-2">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

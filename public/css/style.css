@@ -47,6 +47,7 @@ h3.profil_stats {
 
 textarea {
     width:100%;
+    max-height: 100px;
 }
 
 .center {

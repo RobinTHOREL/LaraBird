@@ -7,7 +7,7 @@
         <div class="col-md-3">
             <div class="panel">
                 <div class="panel-body">
-                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="profil_avatar_home">
+                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="profil_avatar_home center">
                     <h1 class="center"><span>@</span>{{ Auth::user()->name }}</h1>
                 </div>
             </div>
@@ -69,8 +69,10 @@
                             <!-- Units -->
                             <ol class="storyActions">
                                 <li><a href="#">Like</a></li>
+                                @if(Auth::id() == $post->user->id)
                                 <li><a href="#">Modifier</a></li>
                                 <li><a href="#">Supprimer</a></li>
+                                @endif
                                 <li><a href="#">Comment</a></li>
                             </ol>
                             <!-- / Units -->
