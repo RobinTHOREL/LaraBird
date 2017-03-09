@@ -28,7 +28,6 @@ class UserController extends Controller
         $posts = Post::orderBy('created_at','desc')->where('author', $user_id)->get();
 
         $follow = Follow::where('follower_id', Auth::id())->get();
-        $followed_ids = [];
 
         foreach($follow as $followed){
             if($followed->followed_id == $user_id)
