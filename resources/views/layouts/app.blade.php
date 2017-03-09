@@ -47,12 +47,12 @@
                     <!-- Left Side Of Navbar -->
 
                     @if (!Auth::guest())
-                    <ul class="nav navbar-nav">
+                   <!-- <ul class="nav navbar-nav">
                         &nbsp;
                         <li><a href="">Notifications()</a></li>
                         <li><a href="">Messagerie()</a></li>
                         <li><a href="">Recherche</a></li>
-                    </ul>
+                    </ul> -->
                     @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

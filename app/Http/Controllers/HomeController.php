@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follow;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +30,20 @@ class HomeController extends Controller
         //SELECT *
         // $posts = Post::all();
 
+        $followed_user = Follow::where('follower_id', Auth::id())->get();
+        $followed_ids = [];
+
+        foreach($followed_user as $followed){
+            $followed_ids[] = $followed->followed_id;
+        }
+
         //ORDER BY
-        $posts = Post::orderBy('created_at','desc')->get();
+        $posts = Post::whereIn('author', $followed_ids)->orderBy('created_at','desc')->get();
+
         return view('home', ['posts' => $posts]);
+/*        select followed_id from follow where follower_id = 4;
+
+*/
     }
 
     /**
