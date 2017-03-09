@@ -44,13 +44,15 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+
+                    @if (!Auth::guest())
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li><a href="">Notifications()</a></li>
                         <li><a href="">Messagerie()</a></li>
                         <li><a href="">Recherche</a></li>
                     </ul>
-
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -65,16 +67,13 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-<<<<<<< HEAD
                                     <li>
                                         <a href="{{ url('profil') }}">
 
                                             <span><i class="fa fa-btn fa-user"></i> </span> Profile
                                         </a>
                                     </li>
-=======
-                                    <li><a href="/profil">Profil</a></li>
->>>>>>> DW
+
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

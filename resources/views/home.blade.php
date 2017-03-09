@@ -22,8 +22,22 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <!-- Ouvre le fomulaire -->
+                    {!! Form::open(['url' => 'write']) !!}
+                    {!! Form::text('post_content', null, ['placeholder' => 'Write only with butter']) !!}
+                    {!! Form::submit('Publish ur own butter') !!}
+                    <!-- Ferme le formulaire -->
+                    {!! Form::close() !!}
                 </div>
+                <div class="panel-body">
+                    All posts : <br>
+                    @foreach($posts as $post)
+                        <div class="post">
+                            <b>{!! $post->user->name !!}</b> wrotes {!! $post->created_at->diffForHumans() !!} : <br>
+                            {!! $post->post_content !!} <hr>
+                            </div>
+                        @endforeach
+                    </div>
             </div>
         </div>
 
