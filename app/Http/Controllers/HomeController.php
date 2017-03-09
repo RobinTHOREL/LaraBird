@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
         //SELECT *
         // $posts = Post::all();
-        
+
         $isFollowed = false;
 
 

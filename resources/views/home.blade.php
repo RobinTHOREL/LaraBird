@@ -68,7 +68,7 @@
 
                             <!-- Units -->
                             <ol class="storyActions">
-                                <li><a href="#"><i class="fa fa-heart"></i> Like</a></li>
+                                <li><a class="likes" href="#"><i class="fa fa-heart"></i> Like</a></li>
                                 @if(Auth::id() == $post->user->id)
                                     <li><a href="#"><i class="fa fa-modx"></i> Modifier</a></li>
                                     <li><a href="#"><i class="fa fa-trash"></i> Supprimer</a></li>
