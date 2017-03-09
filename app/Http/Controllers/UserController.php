@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function profile($request = null){
 
-        $isFollowed = false;
+
 
         if ($request === null)
             $user_id = Auth::id();
@@ -36,7 +36,11 @@ class UserController extends Controller
                 $isFollowed = false;
         }
 
-        return view('profil', ['user_id' => $user_id, 'user' => $user, 'posts' => $posts, 'isFollowed' => $isFollowed]);
+        $nbfollowers = Follow::all()->where('followed_id', $user_id)->count();
+        $nbfolloweds = Follow::all()->where('follower_id', $user_id)->count();
+
+        return view('profil', ['user_id' => $user_id, 'user' => $user, 'posts' => $posts, 'isFollowed' => $isFollowed,
+        'nbfollowers' => $nbfollowers, 'nbfolloweds' => $nbfolloweds]);
     }
 
     public function update_avatar(Request $request){

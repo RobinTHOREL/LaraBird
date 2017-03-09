@@ -65,4 +65,26 @@ class HomeController extends Controller
 
         return redirect('home');
     }
+
+    public function add_follower_from_home(Request $request){
+        $follow = new Follow;
+        $follow->followed_id = $request->user_id;
+        $follow->follower_id = Auth::id();
+        $follow->save();
+
+        return redirect('home');
+    }
+
+    //how to unfollow
+    public function del_follower_from_home(Request $request){
+
+        $follow = Follow::where([
+            ['follower_id', '=', Auth::id()],
+            ['followed_id', '=', $request->user_id],
+        ])->first();
+
+        $follow->delete();
+
+        return redirect('home');
+    }
 }
