@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/timeline.css') }}" rel="stylesheet">
     <link href="{{ asset('font/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
@@ -62,7 +63,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
-                                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">
+                                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="profil_avatar">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

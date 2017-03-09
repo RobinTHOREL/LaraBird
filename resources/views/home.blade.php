@@ -7,37 +7,77 @@
         <div class="col-md-3">
             <div class="panel">
                 <div class="panel-body">
-                    <!-- Ouvre le fomulaire -->
-                {!! Form::open(['url' => 'write']) !!}
-                {!! Form::text('post_content', null, ['placeholder' => 'Write only with butter']) !!}
-                {!! Form::submit('Publish ur own butter') !!}
-                <!-- Ferme le formulaire -->
-                    {!! Form::close() !!}
+                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="profil_avatar_home">
+                    <h1 class="center">{{ Auth::user()->name }}</h1>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+            <div class="panel-body">
+                <ol class="timeline">
+                    <li>
+                        <i class="pointer"></i>
+                        <div class="unit">
+                            <ol class="actions">
+                                <li class="active"><a href="#" rel="Status"><i class="icon icon-status"></i>Status</a></li>
+                                <li><a href="#"><i class="icon icon-photo"></i>Photo</a></li>
+                            </ol>
 
-                <div class="panel-body">
-                    <!-- Ouvre le fomulaire -->
-                    {!! Form::open(['url' => 'write']) !!}
-                    {!! Form::text('post_content', null, ['placeholder' => 'Write only with butter']) !!}
-                    {!! Form::submit('Publish ur own butter') !!}
-                    <!-- Ferme le formulaire -->
-                    {!! Form::close() !!}
-                </div>
-                <div class="panel-body">
-                    All posts : <br>
-                    @foreach($posts as $post)
-                        <div class="post">
-                            <b>{!! $post->user->name !!}</b> wrotes {!! $post->created_at->diffForHumans() !!} : <br>
-                            {!! $post->post_content !!} <hr>
+                            <!-- Units -->
+                            <div class="actionUnits">
+                                <div class="formUnit" id="Status">
+                                    <i class="active"></i>
+                                    <!-- Ouvre le fomulaire -->
+                                {!! Form::open(['url' => 'write']) !!}
+                                {!! Form::textarea('post_content', null, ['placeholder' => 'Write only with butter', 'class' => 'sizetop']) !!}
+
+                                    <ol class="controls clearfix">
+                                        <li class="post">
+                                        {!! Form::submit('Publish ur own butter') !!}
+                                        </li>
+                                    </ol>
+                                <!-- Ferme le formulaire -->
+                                {!! Form::close() !!}
+                                </div>
                             </div>
-                        @endforeach
-                    </div>
+                            <!-- / Units -->
+
+                        </div>
+                    </li>
+                    @foreach($posts as $post)
+                    <li>
+                        <i class="pointer"></i>
+                        <div class="unit">
+
+                            <!-- Story -->
+                            <div class="storyUnit">
+                                <div class="imageUnit">
+                                    <a href="#"><img src="/uploads/avatars/{{ $post->user->avatar }}" class="profil_avatar"></a>
+                                    <div class="imageUnit-content">
+                                        <h4><a href="#">{!! $post->user->name !!}</a></h4>
+                                        <p>{!! $post->created_at->diffForHumans() !!}</p>
+                                    </div>
+
+                                </div>
+
+                                <p>{!! $post->post_content !!}</p>
+
+                            </div>
+                            <!-- / Story -->
+
+                            <!-- Units -->
+                            <ol class="storyActions">
+                                <li><a href="#">Like</a></li>
+                                <li><a href="#">Comment</a></li>
+                                <li><a href="#">@artminister on Twitter</a></li>
+                            </ol>
+                            <!-- / Units -->
+
+                        </div>
+                    </li>
+                    @endforeach
+                </ol>
             </div>
         </div>
 
