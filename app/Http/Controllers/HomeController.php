@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -33,8 +32,6 @@ class HomeController extends Controller
         //ORDER BY
         $posts = Post::orderBy('created_at','desc')->get();
         return view('home', ['posts' => $posts]);
-
-        $users = User::all();
     }
 
     /**
