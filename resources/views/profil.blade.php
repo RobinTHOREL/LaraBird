@@ -38,22 +38,73 @@
                             </div>
                         </div>
                 </div>
-                @if(Auth::id() == $user_id)
-                    <div class="panel-body">
-                        {!! Form::open(['url' => 'profil']) !!}
-                        {!! Form::text('post_content') !!}
-                        {!! Form::submit('Write on the wall') !!}
-                        {!! Form::close() !!}
-                    </div>
-                @endif
                 <div class="col-md-12">
-                    <br>
-                    @foreach($posts as $post)
-                        <div class="post">
-                            @<b>{!! $post->user->name !!}</b>, {!! $post->created_at->diffForHumans() !!} : <br>
-                            {!! $post->post_content !!} <hr>
-                        </div>
-                    @endforeach
+
+                    <ol class="timeline">
+                        @if(Auth::id() == $user_id)
+                        <li>
+                            <i class="pointer"></i>
+                            <div class="unit">
+                                <ol class="actions">
+                                    <li class="active"><a href="" rel="Status"><i class="icon icon-status"></i>Status</a></li>
+                                    <li><a href="#"><i class="icon icon-photo"></i>Photo</a></li>
+                                </ol>
+
+                                <!-- Units -->
+                                <div class="actionUnits">
+                                    <div class="formUnit" id="Status">
+                                        <i class="active"></i>
+                                        <!-- Ouvre le fomulaire -->
+                                        {!! Form::open(['url' => 'write']) !!}
+                                        {!! Form::textarea('post_content', null, ['placeholder' => 'Write only with butter', 'class' => 'sizetop']) !!}
+
+                                        <ol class="controls clearfix">
+                                            <li class="post">
+                                                {!! Form::submit('Publish ur own butter') !!}
+                                            </li>
+                                        </ol>
+                                        <!-- Ferme le formulaire -->
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+                                <!-- / Units -->
+
+                            </div>
+                        </li>
+                        @endif
+                        @foreach($posts as $post)
+                            <li>
+                                <i class="pointer"></i>
+                                <div class="unit">
+
+                                    <!-- Story -->
+                                    <div class="storyUnit">
+                                        <div class="imageUnit">
+                                            <a href="#"><img src="/uploads/avatars/{{ $post->user->avatar }}" class="profil_avatar"></a>
+                                            <div class="imageUnit-content">
+                                                <h4><span>@</span>{!! $post->user->name !!}</h4>
+                                                <p>{!! $post->created_at->diffForHumans() !!}</p>
+                                            </div>
+
+                                        </div>
+
+                                        <p>{!! $post->post_content !!}</p>
+
+                                    </div>
+                                    <!-- / Story -->
+
+                                    <!-- Units -->
+                                    <ol class="storyActions">
+                                        <li><a href="#">Like</a></li>
+                                        <li><a href="#">Comment</a></li>
+                                        <li><a href="#">@artminister on Twitter</a></li>
+                                    </ol>
+                                    <!-- / Units -->
+
+                                </div>
+                            </li>
+                        @endforeach
+                    </ol>
                 </div>
             </div>
         </div>
