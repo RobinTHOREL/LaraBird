@@ -8,7 +8,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="profil_avatar_home">
-                    <strong>{{ Auth::user()->name }}</strong>
+                    <h1 class="center">{{ Auth::user()->name }}</h1>
                 </div>
             </div>
         </div>

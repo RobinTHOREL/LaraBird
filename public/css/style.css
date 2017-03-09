@@ -30,3 +30,7 @@ h3.profil_stats {
 textarea {
     width:100%;
 }
+
+.center {
+    text-align: center;
+}
