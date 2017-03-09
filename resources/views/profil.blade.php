@@ -80,7 +80,7 @@
                                     <!-- Story -->
                                     <div class="storyUnit">
                                         <div class="imageUnit">
-                                            <a href="#"><img src="/uploads/avatars/{{ $post->user->avatar }}" class="profil_avatar"></a>
+                                            <a href="#"><img src="/uploads/avatars/{{ $post->user->avatar }}" class="avatar_post"></a>
                                             <div class="imageUnit-content">
                                                 <h4><span>@</span>{!! $post->user->name !!}</h4>
                                                 <p>{!! $post->created_at->diffForHumans() !!}</p>

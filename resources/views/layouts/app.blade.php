@@ -63,7 +63,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
-                                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="profil_avatar">
+                                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="avatar_header">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
