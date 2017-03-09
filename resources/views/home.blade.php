@@ -8,7 +8,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="profil_avatar_home">
-                    <h1 class="center">{{ Auth::user()->name }}</h1>
+                    <h1 class="center"><span>@</span>{{ Auth::user()->name }}</h1>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                                 <div class="imageUnit">
                                     <a href="#"><img src="/uploads/avatars/{{ $post->user->avatar }}" class="avatar_post"></a>
                                     <div class="imageUnit-content">
-                                        <h4><a href="profil/{!! $post->user->id !!}">{!! $post->user->name !!}</a></h4>
+                                        <h4><a href="profil/{!! $post->user->id !!}"><span>@</span>{!! $post->user->name !!}</a></h4>
                                         <p>{!! $post->created_at->diffForHumans() !!}</p>
                                     </div>
 
@@ -69,8 +69,9 @@
                             <!-- Units -->
                             <ol class="storyActions">
                                 <li><a href="#">Like</a></li>
+                                <li><a href="#">Modifier</a></li>
+                                <li><a href="#">Supprimer</a></li>
                                 <li><a href="#">Comment</a></li>
-                                <li><a href="#">@artminister on Twitter</a></li>
                             </ol>
                             <!-- / Units -->
 

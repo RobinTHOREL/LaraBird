@@ -97,7 +97,6 @@
                                     <ol class="storyActions">
                                         <li><a href="#">Like</a></li>
                                         <li><a href="#">Comment</a></li>
-                                        <li><a href="#">@artminister on Twitter</a></li>
                                     </ol>
                                     <!-- / Units -->
 
