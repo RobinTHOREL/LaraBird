@@ -6,14 +6,22 @@
             <div class="col-md-10 col-md-offset-1">
                     <div class="profil_header">
                     <img class="profil_avatar" src="/uploads/avatars/{{ $user->avatar }}">
-                    <h2><span>@</span>{{ $user->name }}</h2>
+                    <h2><span>@</span>{{ $user->name }}
                     @if(Auth::id() == $user_id)
 
                     @else
-                        <!--<button type="button" class="btn btn-primary"><span><i class="fa fa-star"></i></span> Follow</button>-->
-                            <button type="button" class="btn btn-success"><span><i class="fa fa-check"></i></span> Follow</button>
+                        <form action="/add_follower" method="POST">
+                            <input type="hidden" name="user_id" value="{{ $user_id }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @if($isFollowed == false)
+                                <button type="submit" class="btn btn-primary"><span><i class="fa fa-star"></i></span> Follow {{ $user->name  }}</button>
+                            @else
+                                <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span> Follow</button>
+                            @endif
+                        </form>
+
                     @endif
-                        <br>
+                    </h2>
                     @if(Auth::id() == $user_id)
                         <form class="form-group" enctype="multipart/form-data" action="/profil" method="POST">
                             <label>Update Profile Image</label>
@@ -34,7 +42,7 @@
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followed</h3>
-                                <p>10</p>
+                                <p>{{ $isFollowed }}</p>
                             </div>
                         </div>
                 </div>

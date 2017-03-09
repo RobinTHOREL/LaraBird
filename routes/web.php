@@ -50,3 +50,6 @@ Route::post('profil', 'UserController@update_avatar');
 
 // Récupere un post sur la page profil
 Route::post('post_from_profil', 'UserController@write');
+
+//Permet de follow une personne
+Route::post('add_follower', 'UserController@add_follower');

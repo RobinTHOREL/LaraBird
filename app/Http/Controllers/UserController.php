@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follow;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,8 @@ class UserController extends Controller
 
     public function profile($request = null){
 
+        $isFollowed = false;
+
         if ($request === null)
             $user_id = Auth::id();
         else
@@ -24,7 +27,17 @@ class UserController extends Controller
         //ORDER BY
         $posts = Post::orderBy('created_at','desc')->where('author', $user_id)->get();
 
-        return view('profil', ['user_id' => $user_id, 'user' => $user, 'posts' => $posts]);
+        $follow = Follow::where('follower_id', Auth::id())->get();
+        $followed_ids = [];
+
+        foreach($follow as $followed){
+            if($followed->followed_id == $user_id)
+                $isFollowed = true;
+            else
+                $isFollowed = false;
+        }
+
+        return view('profil', ['user_id' => $user_id, 'user' => $user, 'posts' => $posts, 'isFollowed' => $isFollowed]);
     }
 
     public function update_avatar(Request $request){
@@ -63,5 +76,14 @@ class UserController extends Controller
         Session::flash('alert-success', 'Post successfully added');
 
         return redirect('profil');
+    }
+
+    public function add_follower(Request $request){
+        $follow = new Follow;
+        $follow->followed_id = $request->user_id;
+        $follow->follower_id = Auth::id();
+        $follow->save();
+
+        return redirect('profil/'.$request->user_id);
     }
 }
