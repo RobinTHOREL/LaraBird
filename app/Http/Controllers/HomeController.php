@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
+=======
+use App\Models\Post;
+use App\User;
+>>>>>>> DW
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -25,7 +30,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         return view('home');
+=======
+        //SELECT *
+        //$posts = Post::all();
+
+        //ORDER BY
+        $posts = Post::orderBy('created_at','desc')->get();
+        return view('home', ['posts' => $posts]);
+
+        $users = User::all();
+>>>>>>> DW
     }
 
     /**

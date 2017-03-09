@@ -65,12 +65,16 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+<<<<<<< HEAD
                                     <li>
                                         <a href="{{ url('profil') }}">
 
                                             <span><i class="fa fa-btn fa-user"></i> </span> Profile
                                         </a>
                                     </li>
+=======
+                                    <li><a href="/profil">Profil</a></li>
+>>>>>>> DW
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
