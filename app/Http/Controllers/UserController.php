@@ -23,6 +23,8 @@ class UserController extends Controller
 
         $user = User::findOrFail($user_id);
 
+        $isFollowed = false;
+
         //ORDER BY
         $posts = Post::orderBy('created_at','desc')->where('author', $user_id)->get();
 

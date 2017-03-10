@@ -99,20 +99,6 @@ class HomeController extends Controller
         return redirect('home');
     }
 
-    public function postEditPost(Request $request)
-    {
-        $this->validate($request, [
-            'body' => 'required'
-        ]);
-        $post = Post::find($request['postId']);
-        if (Auth::id() != $post->user->id()) {
-            return redirect()->back();
-        }
-        $post->body = $request['body'];
-        $post->update();
-        return response()->json(['new_body' => $post->body], 200);
-    }
-
     public function postLikePost(Request $request)
     {
         $post_id = $request['postId'];
