@@ -105,5 +105,20 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- marked -->
+    <script src="js/marked.min.js"></script>
+    <script src="js/highlight.pack.js"></script>
+
+    <!-- plugin script -->
+    <script src="js/bootstrap-suggest.js"></script>
+
 </body>
 </html>

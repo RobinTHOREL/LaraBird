@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follow;
+use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,10 +46,13 @@ class HomeController extends Controller
         //ORDER BY
         $posts = Post::whereIn('author', $followed_ids)->orderBy('created_at','desc')->get();
 
+
         $user = User::all();
 
         return view('home', ['posts' => $posts, 'users' => $user, 'followeds' => $followed_ids]);
     }
+
+
 
     /**
      * Write a post to database
@@ -60,6 +64,35 @@ class HomeController extends Controller
         $post = new Post;
         $post->post_content = $request->post_content;
         $post->author = Auth::id();
+
+        $users = User::all();
+        $names_ids = [];
+
+        $content = $post->post_content;
+
+        global $user;
+
+        $user = null;
+
+        foreach ($users as $user)
+        {
+            $names_ids[$user->name] = $user->id;
+
+            $content = preg_replace_callback('/^@([A-Za-z0-9_]+)/',
+                    function ($tab)
+                    {
+                        global $user;
+
+                        if ($tab[1] == $user->name)
+                            return '<a href="'.url('profil', $user->id).'">'.$tab[0].'</a>';
+                        else
+                            return $tab[0];
+                    }
+                , $content);
+        }
+
+        $post->post_content = $content;
+
         $post->save();
         Session::flash('alert-success', 'Post successfully added');
 
@@ -85,7 +118,9 @@ class HomeController extends Controller
         $post_id = $request['postId'];
         $is_like = $request['isLike'] === 'true';
         $update = false;
+
         $post = Post::find($post_id);
+
         if (!$post) {
             return null;
         }
@@ -110,6 +145,7 @@ class HomeController extends Controller
             $like->save();
         }
         return null;
+
     }
 
     public function add_follower_from_home(Request $request){
@@ -145,4 +181,6 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+
 }

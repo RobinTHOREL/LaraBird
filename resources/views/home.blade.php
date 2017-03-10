@@ -25,7 +25,7 @@
                                     <i class="active"></i>
                                     <!-- Ouvre le fomulaire -->
                                 {!! Form::open(['url' => 'write']) !!}
-                                {!! Form::textarea('post_content', null, ['placeholder' => 'Write only with butter', 'class' => 'sizetop']) !!}
+                                {!! Form::textarea('post_content', null, ['placeholder' => 'Write only with butter', 'class' => 'sizetop mention','id' => 'comment' ]) !!}
 
                                     <ol class="controls clearfix">
                                         <li class="post">
@@ -56,19 +56,23 @@
 
                                 </div>
 
-                                <p>{!! $post->post_content !!}</p>
+                                <p>
+                                    {!! $post->post_content !!}
+                                </p>
 
                             </div>
                             <!-- / Story -->
 
                             <!-- Units -->
                             <ol class="storyActions">
-                                <li><a href="#" class="like"><i class="fa fa-heart"></i> {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a></li>
+                                <li><a href="#" class="like" name="{{ $post->id }}"><i class="fa fa-heart"></i> {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a></li>
                                 @if(Auth::id() == $post->user->id)
                                     <li><a href="#"><i class="fa fa-modx"></i> Modifier</a></li>
                                     <li><a href="/delete/{{ $post->id }}"><i class="fa fa-trash"></i> Delete</a></li>
                                 @endif
-                                    <li><a href="#"><i class="fa fa-comment"></i> Comment</a></li>
+                                    <li><a class="comment" href="#"><i class="fa fa-comment"></i> Comment</a></li>
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             </ol>
                             <!-- / Units -->
 
