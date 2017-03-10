@@ -43,11 +43,11 @@
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followers</h3>
-                                <p><a href="followers/{{ $user_id }}">{{ $nbfollowers }}</a></p>
+                                <p><a href="{{ url('followers') }}/{{ $user_id }}">{{ $nbfollowers }}</a></p>
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followed</h3>
-                                <p>{{ $nbfolloweds }}</p>
+                                <p><a href="{{ url('followeds') }}/{{ $user_id }}">{{ $nbfolloweds }}</a></p>
                             </div>
                         </div>
                 </div>
