@@ -68,10 +68,10 @@
 
                             <!-- Units -->
                             <ol class="storyActions">
-                                <li><a class="likes" href="#"><i class="fa fa-heart"></i> Like</a></li>
+                                <li><a href="#" class="like"><i class="fa fa-heart"></i>{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a></li>
                                 @if(Auth::id() == $post->user->id)
                                     <li><a href="#"><i class="fa fa-modx"></i> Modifier</a></li>
-                                    <li><a href="#"><i class="fa fa-trash"></i> Supprimer</a></li>
+                                    <li><i class="fa fa-trash"></i><a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a></li>
                                 @endif
                                     <li><a href="#"><i class="fa fa-comment"></i> Comment</a></li>
                             </ol>
@@ -114,4 +114,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    var token = '{{ Session::token() }}';
+    var urlEdit = '{{ route('edit') }}';
+    var urlLike = '{{ route('like') }}';
+</script>
+
 @endsection
