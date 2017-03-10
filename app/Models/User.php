@@ -37,10 +37,4 @@ class User extends Eloquent
 		'password',
 		'remember_token'
 	];
-
-
-    public function likes()
-    {
-        return $this->hasMany('App\Like');
-    }
 }

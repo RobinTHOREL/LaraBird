@@ -41,6 +41,6 @@ class Post extends Eloquent
 
     public function likes()
     {
-        return $this->hasMany('App\Like');
+        return $this->hasMany(Like::class);
     }
 }
