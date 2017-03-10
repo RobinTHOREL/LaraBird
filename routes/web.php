@@ -69,6 +69,14 @@ Route::get('delete/{id_post}', 'HomeController@delete_post');
 //Update un post
 Route::get('modify/{id_post}', 'HomeController@modify_post');
 
+//Page de settings
 Route::get('/settings', 'UserController@settings');
 
+//Update mdp
 Route::post('/settings/update', 'UserController@update_settings');
+
+//Liste les followers d'un user
+Route::get('/followers/{user_id}', 'UserController@list_followers');
+
+//Liste les followeds d'un user
+Route::get('/followeds/{user_id}', 'UserController@list_followeds');

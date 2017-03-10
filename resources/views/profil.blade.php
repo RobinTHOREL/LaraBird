@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followers</h3>
-                                <p>{{ $nbfollowers }}</p>
+                                <p><a href="followers/{{ $user_id }}">{{ $nbfollowers }}</a></p>
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followed</h3>

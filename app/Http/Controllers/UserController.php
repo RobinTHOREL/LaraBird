@@ -15,8 +15,6 @@ class UserController extends Controller
 
     public function profile($request = null){
 
-
-
         if ($request === null)
             $user_id = Auth::id();
         else
@@ -117,5 +115,13 @@ class UserController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function list_followers($id_user = false){
+        return view('followers', ['user', $id_user]);
+    }
+
+    public function list_followeds(){
+        return view('followeds');
     }
 }
