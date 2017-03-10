@@ -8,7 +8,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class="profil_avatar_home center">
-                    <h1 class="center"><span>@</span>{{ Auth::user()->name }}</h1>
+                    <h2 class="center"><span>@</span>{{ Auth::user()->name }}</h2>
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
                                 <li><a href="#" class="like"><i class="fa fa-heart"></i>{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a></li>
                                 @if(Auth::id() == $post->user->id)
                                     <li><a href="#"><i class="fa fa-modx"></i> Modifier</a></li>
-                                    <li><i class="fa fa-trash"></i><a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a></li>
+                                    <li><a href="/delete/{{ $post->id }}"><i class="fa fa-trash"></i> Delete</a></li>
                                 @endif
                                     <li><a href="#"><i class="fa fa-comment"></i> Comment</a></li>
                             </ol>
@@ -87,26 +87,24 @@
         <div class="col-md-3">
             <div class="panel">
                 <div class="panel-body">
-                    All users : <hr>
+                    Other users : <hr>
                 @foreach($users as $user)
                     @if(Auth::id() != $user->id)
                         <img src="/uploads/avatars/{{ $user->avatar }}" class="avatar_post">
-                        <a href="/profil/{{ $user->id }}"><span>@</span> {!! $user->name !!}</a>
+                        <span>
+                            <a href="/profil/{{ $user->id }}"><span>@</span> {!! $user->name !!}</a>
                             @if(!in_array($user->id, $followeds))
-                                <form action="/add_follower" method="POST">
+                                <form action="/add_follower_from_home" method="POST">
                                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-primary"><span><i class="fa fa-star"></i></span> Follow {{ $user->name }}</button>
+                                    <button type="submit" class="btn btn-primary"><span><i class="fa fa-star"></i></span></button>
                                 </form>
                             @else
-                                <form action="/del_follower" method="POST">
-                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span> Follow</button>
-                                </form>
+                                <p><i>You already follow {{ $user->name }}</i></p>
                             @endif
-
                             <hr>
+                        </span>
+
                     @endif
                 @endforeach
                 </div>
@@ -117,7 +115,6 @@
 
 <script>
     var token = '{{ Session::token() }}';
-    var urlEdit = '{{ route('edit') }}';
     var urlLike = '{{ route('like') }}';
 </script>
 

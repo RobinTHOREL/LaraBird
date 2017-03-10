@@ -43,11 +43,11 @@
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followers</h3>
-                                <p>{{ Auth::id() }}</p>
+                                <p>{{ $nbfollowers }}</p>
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followed</h3>
-                                <p>{{ $isFollowed }}</p>
+                                <p>{{ $nbfolloweds }}</p>
                             </div>
                         </div>
                 </div>
@@ -116,8 +116,7 @@
                                     <ol class="storyActions">
                                         <li><a href="#"><i class="fa fa-heart"></i> Like</a></li>
                                         @if(Auth::id() == $post->user->id)
-                                            <li><a href="#"><i class="fa fa-modx"></i> Modifier</a></li>
-                                            <li><a href="#"><i class="fa fa-trash"></i> Supprimer</a></li>
+                                            <li><a href="/delete/{{ $post->id }}"><i class="fa fa-trash"></i> Delete</a></li>
                                         @endif
                                         <li><a href="#"><i class="fa fa-comment"></i> Comment</a></li>
                                     </ol>

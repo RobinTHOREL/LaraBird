@@ -74,10 +74,15 @@
                                             <span><i class="fa fa-btn fa-user"></i> </span> Profile
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('settings') }}">
 
+                                            <span><i class="fa fa-btn fa-gear"></i> </span> Settings
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             <span><i class="fa fa-btn fa-sign-out"></i> </span> Logout
                                         </a>

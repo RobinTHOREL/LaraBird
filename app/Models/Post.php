@@ -38,4 +38,9 @@ class Post extends Eloquent
     {
         return $this->belongsTo(User::class, 'author');
     }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }

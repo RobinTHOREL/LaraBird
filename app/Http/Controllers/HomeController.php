@@ -66,16 +66,6 @@ class HomeController extends Controller
         return redirect('home');
     }
 
-    public function getDeletePost($post_id)
-    {
-        $post = Post::where('id', $post_id)->first();
-        if (Auth::id() != $post->user->id()) {
-            return redirect()->back();
-        }
-        $post->delete();
-        return redirect()->route('dashboard')->with(['message' => 'Successfully deleted!']);
-    }
-
     public function postEditPost(Request $request)
     {
         $this->validate($request, [
@@ -120,5 +110,39 @@ class HomeController extends Controller
             $like->save();
         }
         return null;
+    }
+
+    public function add_follower_from_home(Request $request){
+        $follow = new Follow;
+        $follow->followed_id = $request->user_id;
+        $follow->follower_id = Auth::id();
+        $follow->save();
+
+        return redirect('home');
+    }
+
+    //how to unfollow
+    public function del_follower_from_home(Request $request){
+
+        $follow = Follow::where([
+            ['follower_id', '=', Auth::id()],
+            ['followed_id', '=', $request->user_id],
+        ])->first();
+
+        $follow->delete();
+
+        return redirect('home');
+    }
+
+    public function delete_post(Request $request, $id){
+
+        $post = Post::where([
+            ['author','=',Auth::id()],
+            ['id','=',$id],
+        ])->first();
+
+        $post->delete();
+
+        return redirect()->back();
     }
 }
