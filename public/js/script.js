@@ -79,6 +79,8 @@ $(function() {
         {username: 'Abra'},
         {username: 'Nana'},
         {username: 'Wildy'},
+        {username: 'Brixton'},
+        {username: 'EtatDesLieux'},
     ];
 
     $('#comment').suggest('@', {
