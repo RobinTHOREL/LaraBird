@@ -109,7 +109,7 @@
 
                                     <!-- Units -->
                                     <ol class="storyActions">
-                                        <li><a href="#"><i class="fa fa-heart"></i> Like</a></li>
+                                        <li><a href="#" class="like"><i class="fa fa-heart"></i> {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a></li>
                                         @if(Auth::id() == $post->user->id)
                                             <li><a href="/delete/{{ $post->id }}"><i class="fa fa-trash"></i> Delete</a></li>
                                         @endif

@@ -4,8 +4,10 @@
 
 $('.like').on('click', function(event) {
     event.preventDefault();
-    postId = event.target.parentNode.parentNode.dataset['postid'];
+    postId = event.target.name;
+
     var isLike = event.target.previousElementSibling == null;
+
     $.ajax({
         method: 'POST',
         url: urlLike,
@@ -20,3 +22,70 @@ $('.like').on('click', function(event) {
             }
         });
 });
+
+$('.comment').on('click', function (event) {
+    postId = event.target.parentNode.parentNode.dataset['postid'];
+    alert(postId);
+});
+
+
+
+$(function() {
+
+    hljs.initHighlightingOnLoad();
+// configure marked
+    var renderer = new marked.Renderer();
+    renderer.table = function (header, body) {
+        return '\
+  				<table class="table table-bordered table-striped table-hover">\
+  					<thead>\
+  						' + header + '\
+  					</thead>\
+  					<tbody>\
+  						' + body + '\
+  					</tbody>\
+  				</table>';
+    },
+
+        marked.setOptions({
+            sanitize: false,
+            highlight: function (code) {
+                return hljs.highlightAuto(code).value;
+            },
+            renderer: renderer,
+            breaks: true
+        });
+
+    $.fn.extend({
+        marked: function() {
+            this.each(function() {
+                $this = $(this);
+                $this.html(marked($this.html()));
+            })
+
+            return this;
+        },
+    });
+
+    $('.markdown').marked();
+
+    // data
+    var users = [
+        {username: 'Diego'},
+        {username: 'Robin'},
+        {username: 'Gael'},
+    ];
+
+    $('#comment').suggest('@', {
+        data: users,
+        map: function(user) {
+            return {
+                value: user.username,
+                text: '<strong>'+user.username+'</strong>'
+            }
+        }
+    })
+
+});
+
+
