@@ -71,9 +71,14 @@ $(function() {
 
     // data
     var users = [
-        {username: 'Diego'},
-        {username: 'Robin'},
-        {username: 'Gael'},
+        {username: 'Mirage'},
+        {username: 'LeDouxBeurre'},
+        {username: 'Hf'},
+        {username: 'ref'},
+        {username: 'php-sensei'},
+        {username: 'Abra'},
+        {username: 'Nana'},
+        {username: 'Wildy'},
     ];
 
     $('#comment').suggest('@', {
