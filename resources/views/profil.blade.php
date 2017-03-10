@@ -64,11 +64,6 @@
                         <li>
                             <i class="pointer"></i>
                             <div class="unit">
-                                <ol class="actions">
-                                    <li class="active"><a href="" rel="Status"><i class="icon icon-status"></i>Status</a></li>
-                                    <li><a href="#"><i class="icon icon-photo"></i>Photo</a></li>
-                                </ol>
-
                                 <!-- Units -->
                                 <div class="actionUnits">
                                     <div class="formUnit" id="Status">

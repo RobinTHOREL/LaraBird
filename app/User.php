@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,7 +47,7 @@ class User extends Authenticatable
 
     public function likes()
     {
-        return $this->hasMany("app\Like");
+        return $this->hasMany(Like::class, 'post_id');
     }
 
 

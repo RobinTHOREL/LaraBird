@@ -57,6 +57,18 @@ Route::post('add_follower', 'UserController@add_follower');
 //Permet de unfollow une personne
 Route::post('del_follower', 'UserController@del_follower');
 
+
+Route::get('/delete-post/{post_id}', [
+    'uses' => 'PostController@getDeletePost',
+    'as' => 'post.delete',
+    'middleware' => 'auth'
+]);
+
+Route::post('/like', [
+    'uses' => 'HomeController@postLikePost',
+    'as' => 'like'
+]);
+
 //Permet de follow depuis la home
 Route::post('add_follower_from_home', 'HomeController@add_follower_from_home');
 
