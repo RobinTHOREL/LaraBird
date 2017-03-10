@@ -117,11 +117,32 @@ class UserController extends Controller
 
     }
 
-    public function list_followers($id_user = false){
-        return view('followers', ['user', $id_user]);
+    public function list_followers($request = false){
+
+        $user_id = $request;
+
+        $user = User::findOrFail($user_id);
+
+        $follow = Follow::where('follower_id', Auth::id())->get();
+
+        $nbfollowers = Follow::all()->where('followed_id', $user_id)->count();
+        $nbfolloweds = Follow::all()->where('follower_id', $user_id)->count();
+
+        return view('followers', ['user_id' => $user_id, 'user' => $user,
+            'nbfollowers' => $nbfollowers, 'nbfolloweds' => $nbfolloweds, 'follow' => $follow]);
     }
 
-    public function list_followeds(){
-        return view('followeds');
+    public function list_followeds($request = false){
+        $user_id = $request;
+
+        $user = User::findOrFail($user_id);
+
+        $follow = Follow::where('follower_id', Auth::id())->get();
+
+        $nbfollowers = Follow::all()->where('followed_id', $user_id)->count();
+        $nbfolloweds = Follow::all()->where('follower_id', $user_id)->count();
+
+        return view('followeds', ['user_id' => $user_id, 'user' => $user,
+            'nbfollowers' => $nbfollowers, 'nbfolloweds' => $nbfolloweds, 'follow' => $follow]);
     }
 }
