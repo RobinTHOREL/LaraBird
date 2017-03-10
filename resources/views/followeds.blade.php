@@ -10,7 +10,9 @@
                     <h3>Follow <strong>{{ $nbfolloweds }}</strong> peoples</h3>
                 </div>
                 <div class="col-md-10 col-md-offset-1">
-
+                    @foreach($follow as $follower)
+                        {{ $follower->user->name }}
+                    @endforeach
                 </div>
             </div>
         </div>

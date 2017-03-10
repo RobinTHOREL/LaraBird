@@ -6,6 +6,7 @@ use App\Models\Follow;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\User;
 use Intervention\Image\Facades\Image;
@@ -126,10 +127,9 @@ class UserController extends Controller
         $follow = Follow::where('follower_id', Auth::id())->get();
 
         $nbfollowers = Follow::all()->where('followed_id', $user_id)->count();
-        $nbfolloweds = Follow::all()->where('follower_id', $user_id)->count();
 
         return view('followers', ['user_id' => $user_id, 'user' => $user,
-            'nbfollowers' => $nbfollowers, 'nbfolloweds' => $nbfolloweds, 'follow' => $follow]);
+            'nbfollowers' => $nbfollowers, 'follow' => $follow]);
     }
 
     public function list_followeds($request = false){
@@ -137,12 +137,14 @@ class UserController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        $follow = Follow::where('follower_id', Auth::id())->get();
+        $follow = DB::table('users')
+            ->leftJoin('follow', 'users.id', '=', 'follow.id')
+            ->where('follower_id', $user_id)
+            ->get();
 
-        $nbfollowers = Follow::all()->where('followed_id', $user_id)->count();
         $nbfolloweds = Follow::all()->where('follower_id', $user_id)->count();
 
         return view('followeds', ['user_id' => $user_id, 'user' => $user,
-            'nbfollowers' => $nbfollowers, 'nbfolloweds' => $nbfolloweds, 'follow' => $follow]);
+            'nbfolloweds' => $nbfolloweds, 'follow' => $follow]);
     }
 }
