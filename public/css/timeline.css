@@ -97,14 +97,6 @@
   margin-top: 5px;
   position: relative;
 }
-.formUnit .active {
-  background: url(../images/active-unit.png) top left no-repeat;
-  position: absolute;
-  left: 10px;
-  top: -6px;
-  width: 9px;
-  height: 6px;
-}
 .photoUnit {
   margin: 0 -10px -5px -10px;
 }

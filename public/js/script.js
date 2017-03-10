@@ -24,8 +24,7 @@ $('.like').on('click', function(event) {
 });
 
 $('.comment').on('click', function (event) {
-    postId = event.target.parentNode.parentNode.dataset['postid'];
-    alert(postId);
+
 });
 
 
