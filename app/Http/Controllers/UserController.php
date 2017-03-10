@@ -55,12 +55,9 @@ class UserController extends Controller
             $user = Auth::user();
             $user->avatar = $filename;
             $user->save();
-
-            //ORDER BY
-            $posts = Post::orderBy('created_at','desc')->where('author', Auth::id())->get();
         }
 
-        return view('profil', array('user' => Auth::user(), 'user_id' => Auth::id(), 'posts' => $posts) );
+        return redirect('profil');
 
     }
 
@@ -86,7 +83,7 @@ class UserController extends Controller
         $follow->follower_id = Auth::id();
         $follow->save();
 
-        return redirect('profil/'.$request->user_id);
+        return redirect()->back();
     }
 
     //how to unfollow
@@ -99,7 +96,7 @@ class UserController extends Controller
 
         $follow->delete();
 
-        return redirect('profil/'.$request->user_id);
+        return redirect()->back();
     }
 
     public function settings(Request $request){
@@ -124,7 +121,15 @@ class UserController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        $follow = Follow::where('follower_id', Auth::id())->get();
+        $follow = Follow::where('followed_id', $user_id)->get();
+        $followids = [];
+
+        foreach ($follow as $followers)
+        {
+            $followids[] = $followers->follower_id;
+        }
+
+        $follow = User::whereIn('id', $followids)->orderBy('created_at','desc')->get();
 
         $nbfollowers = Follow::all()->where('followed_id', $user_id)->count();
 
@@ -137,10 +142,15 @@ class UserController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        $follow = DB::table('users')
-            ->leftJoin('follow', 'users.id', '=', 'follow.id')
-            ->where('follower_id', $user_id)
-            ->get();
+        $follow = Follow::where('follower_id', $user_id)->get();
+        $followids = [];
+
+        foreach ($follow as $followers)
+        {
+            $followids[] = $followers->followed_id;
+        }
+
+        $follow = User::whereIn('id', $followids)->orderBy('created_at','desc')->get();
 
         $nbfolloweds = Follow::all()->where('follower_id', $user_id)->count();
 

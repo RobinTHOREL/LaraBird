@@ -10,10 +10,21 @@
                     <h3>Follow <strong>{{ $nbfolloweds }}</strong> peoples</h3>
                 </div>
                 <div class="col-md-10 col-md-offset-1">
-                    @foreach($follow as $follower)
-                        {{ $follower->user->name }}
-                    @endforeach
-                </div>
+
+
+                        @foreach($follow as $followed)
+                                <img src="/uploads/avatars/{{ $followed->avatar }}" class="avatar_post">
+                                <span>
+
+                            <a href="/profil/{{ $followed->id }}"><span>@</span> {!! $followed->name !!}</a>
+
+
+                        </span><br>
+
+
+                        @endforeach
+
+              
             </div>
         </div>
     </div>

@@ -39,15 +39,15 @@
                         <div class="col-md-12">
                             <div class="col-md-4 profil_stats">
                                 <h3>Posts</h3>
-                                <p>{{ count($user->posts) }}</p>
+                                <h4>{{ count($user->posts) }}</h4>
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followers</h3>
-                                <p><a href="{{ url('followers') }}/{{ $user_id }}">{{ $nbfollowers }}</a></p>
+                                <h4><a href="{{ url('followers') }}/{{ $user_id }}">{{ $nbfollowers }}</a></h4>
                             </div>
                             <div class="col-md-4 profil_stats">
                                 <h3>Followed</h3>
-                                <p><a href="{{ url('followeds') }}/{{ $user_id }}">{{ $nbfolloweds }}</a></p>
+                                <h4><a href="{{ url('followeds') }}/{{ $user_id }}">{{ $nbfolloweds }}</a></h4>
                             </div>
                         </div>
                 </div>
